@@ -1,0 +1,31 @@
+name: Stats
+
+on:
+  push: 
+    branches: [ main ]
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+
+    permissions:
+       contents: write
+
+    steps: 
+      - name: Checkout Repositorio
+        uses: actions/checkout@v4
+
+      - name: Steup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run Script
+        run: python ./Roadmap/stats.py
+
+      - name: Commit and Push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with: 
+          commit_message: Update Stats
+          commit_user_name: Anthony [GitHub Action]
+          commit_user_email: anthony.cg.1274@gmail.com
+          commit_author: ThonyCG
